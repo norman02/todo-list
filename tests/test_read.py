@@ -5,7 +5,15 @@ import os
 sys.path.insert(
     0, os.path.abspath(os.path.dirname(__file__) + "/..")
 )  # ✅ Correct import path
-from todo import add_task, view_tasks, remove_task, update_task, tasks
+from todo import (
+    add_task,
+    view_tasks,
+    remove_task,
+    update_task,
+    tasks,
+    load_tasks,
+    TASK_FILE,
+)
 
 
 class TestReadTask(unittest.TestCase):

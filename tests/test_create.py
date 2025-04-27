@@ -53,3 +53,21 @@ class TestCreateTask(unittest.TestCase):
             f"[HIGH] {TEST_DATA['task_name']} (Due: {TEST_DATA['due_date']})",
             view_tasks(),
         )
+
+    def test_add_task_invalid_priority(self):
+        """Ensure invalid priority levels are rejected."""
+        result = add_task("Buy groceries", priority="RANDOM")
+        self.assertEqual(result, "Invalid priority level or date format!")
+
+    def test_add_duplicate_task(self):
+        """Ensure duplicate tasks are not allowed."""
+        add_task("Buy groceries")  # First addition
+        result = add_task("Buy groceries")  # Second attempt (should fail)
+        self.assertEqual(result, "Task already exists!")
+
+    def test_add_task_invalid_date(self):
+        """Ensure tasks with malformed due dates fail."""
+        result = add_task(
+            "Plan vacation", priority="HIGH", due_date="31-Feb-2025"
+        )  # Invalid date
+        self.assertEqual(result, "Invalid priority level or date format!")
