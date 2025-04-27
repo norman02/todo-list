@@ -1,66 +1,69 @@
-# 📝 To-Do List App  
+# **📝 Todo-List: A Powerful Productivity App**
+A feature-rich **task manager** inspired by Todoist—optimized for **precise task handling, priority sorting, and future cloud sync & collaboration.**  
 
-## 📌 Overview  
-This is a **full-stack To-Do List web application** built using **FastAPI, MongoDB, and React**. Users can create, manage, and prioritize tasks, with the ability to mark tasks as completed using checkboxes.  
+---
 
-## 🛠 Tech Stack  
-- **Backend:** FastAPI (Python) + MongoDB  
-- **Frontend:** React (JavaScript)  
-- **Database:** MongoDB Atlas (or local MongoDB instance)  
+## **🚀 Features**
+✔ **Task creation, removal, and updates with exact matching**  
+✔ **Priority-based sorting (URGENT, HIGH, MEDIUM, LOW)**  
+✔ **Deadline tracking & due date validation**  
+✔ **Unit-test verified functionality**  
+✔ **Future roadmap for advanced task management**  
 
-## 🚀 Features  
-✅ Add tasks with a **priority level** (`High`, `Medium`, `Low`)  
-✅ Mark tasks as **completed** using checkboxes  
-✅ Remove tasks dynamically  
-✅ Sort tasks by **priority** in the database  
-✅ REST API endpoints for easy integration  
+---
 
-## 🔧 Installation  
+## **📂 Installation**
+Clone the repository:
+```bash
+git clone git@github.com:norman02/todo-list.git
+cd todo-list
+```
+Install dependencies (if needed):
+```bash
+pip install -r requirements.txt
+```
 
-### **Backend Setup** (FastAPI + MongoDB)  
-1. Clone the repository:  
-   ```bash
-   git clone <repository-url>
-   cd todo-list-app
-   ```  
-2. Install dependencies:  
-   ```bash
-   pip install -r requirements.txt
-   ```  
-3. Start FastAPI server:  
-   ```bash
-   uvicorn main:app --reload
-   ```  
+---
 
-### **Frontend Setup** (React)  
-1. Navigate to frontend directory:  
-   ```bash
-   cd frontend
-   ```  
-2. Install dependencies:  
-   ```bash
-   npm install
-   ```  
-3. Start development server:  
-   ```bash
-   npm start
-   ```  
+## **📝 Usage**
+Run the task manager:
+```bash
+python todo.py
+```
 
-## 🔌 API Endpoints  
+Example commands:
+```python
+add_task("Submit report", priority="HIGH", due_date="2025-04-30")
+remove_task("Submit report")
+update_task("Submit report", priority="URGENT")
+view_tasks()
+```
 
-| Method | Endpoint        | Description                  |
-|--------|---------------|------------------------------|
-| `GET`  | `/tasks`      | Retrieve all tasks          |
-| `POST` | `/tasks`      | Create a new task           |
-| `PUT`  | `/tasks/{id}` | Update task completion status |
-| `DELETE` | `/tasks/{id}` | Remove a task by ID        |
+---
 
-## 🛣 Roadmap  
-- **Add due dates and deadlines for tasks**  
-- **Implement user authentication**  
-- **Enhance UI with animations and styling**  
-- **Deploy backend and frontend to cloud services**  
+## **⚡ Running Tests**
+Verify functionality:
+```bash
+python -m unittest discover -s tests
+```
+Check test coverage:
+```bash
+coverage run -m unittest discover -s tests
+coverage report -m
+```
 
-## 📜 License  
-This project is licensed under MIT. Feel free to use and contribute!  
+---
 
+## **🌍 Future Enhancements**
+- 📅 **Recurring tasks (daily, weekly, monthly)**  
+- 🏷 **Task categories & tagging system**  
+- 🔔 **Deadline notifications & reminders**  
+- 📡 **Cloud sync & multi-user collaboration**  
+- 🎨 **CLI enhancements & graphical interface**  
+
+---
+
+## **👥 Contributing**
+Want to help build the next big productivity tool? **Fork the repo & submit a PR!** Contributions are welcome.  
+
+**Norman02** | [GitHub Profile](https://github.com/norman02)
