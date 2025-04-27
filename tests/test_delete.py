@@ -1,5 +1,11 @@
 import unittest
-from todo import remove_task, view_tasks, add_task, tasks
+import sys
+import os
+
+sys.path.insert(
+    0, os.path.abspath(os.path.dirname(__file__) + "/..")
+)  # ✅ Correct import path
+from todo import add_task, view_tasks, remove_task, update_task, tasks
 
 
 class TestDeleteTask(unittest.TestCase):

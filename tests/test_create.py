@@ -1,5 +1,20 @@
 import unittest
-from todo import add_task, view_tasks, remove_task, tasks
+
+import sys
+import os
+
+sys.path.insert(
+    0, os.path.abspath(os.path.dirname(__file__) + "/..")
+)  # Correct import path
+
+from todo import add_task, view_tasks, remove_task, update_task, tasks
+import sys
+import os
+
+sys.path.insert(
+    0, os.path.abspath(os.path.dirname(__file__) + "/..")
+)  # ✅ Correct import path
+from todo import add_task, view_tasks, remove_task, update_task, tasks
 
 TEST_DATA = {
     "task_name": "Finish homework",
