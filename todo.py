@@ -5,21 +5,11 @@ VALID_PRIORITIES = ["URGENT", "HIGH", "MEDIUM", "LOW"]
 
 
 # Load tasks into an array at startup
-def load_tasks():
-    try:
-        with open(TASK_FILE, "r") as file:
-            return [line.strip() for line in file.readlines()]
-    except FileNotFoundError:
-        return []
-
+from storage import load_tasks, write_tasks
 
 tasks = load_tasks()
 
-
-def write_tasks():
-    """Save the `tasks` array back to task.txt."""
-    with open(TASK_FILE, "w") as file:
-        file.writelines(f"{task}\n" for task in tasks)
+from storage import write_tasks as save_tasks  # Give it a clear alias
 
 
 def format_task(task, priority, due_date=None, recurring=None):
@@ -65,7 +55,7 @@ def add_task(task, priority="MEDIUM", due_date=None, recurring=None):
     if formatted_task in tasks:
         return "Task already exists!"
     tasks.append(formatted_task)
-    write_tasks()
+    save_tasks(tasks)
     return "Task added successfully!"
 
 
@@ -83,7 +73,7 @@ def remove_task(task_name, priority=None):
     if not matching_tasks:
         return "Task not found!"
     tasks.remove(matching_tasks[0])
-    write_tasks()
+    save_tasks(tasks)
     return "Task removed successfully!"
 
 
@@ -149,7 +139,7 @@ def update_task(task_name, priority=None, due_date=None):
                 f" [Recurring: {current_recurring}]" if current_recurring else ""
             )
             tasks[i] = f"[{new_priority}] {task_name}{new_due_date}{new_recurring}"
-            write_tasks()
+            save_tasks(tasks)
             return "Task updated successfully!"
     return "Task not found!"
 
@@ -193,4 +183,4 @@ def process_recurring_tasks():
                     new_task = f"{base_task_cleaned} (Due: {new_due_date}) [Recurring: {recurrence_type}]"
                     new_tasks.append(new_task)
     tasks.extend(new_tasks)
-    write_tasks()
+    save_tasks(tasks)
