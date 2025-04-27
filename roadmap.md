@@ -1,6 +1,3 @@
-### ✅ **Updated Roadmap Outline**
-Here’s what you might include in `roadmap.md`:
-
 #### **📌 Phase 1: Core Task Management (✅ Completed)**
 - [x] **Task creation, removal, updating**
 - [x] **Exact task matching & priority levels**
