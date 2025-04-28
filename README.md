@@ -1,69 +1,70 @@
-# **📝 Todo-List: A Powerful Productivity App**
-A feature-rich **task manager** inspired by Todoist—optimized for **precise task handling, priority sorting, and future cloud sync & collaboration.**  
+
+# 📌 **Todo List CLI App**  
+A lightweight, standalone task management tool built for simplicity and reliability—no external dependencies required!  
+
+## ✨ **Features**
+- ✅ Add, update, and remove tasks with ease  
+- ✅ Supports priority levels (`HIGH`, `MEDIUM`, `LOW`)  
+- ✅ Manage due dates for tasks  
+- ✅ Intuitive command-line interface  
+- ✅ Persistent local storage for task tracking  
 
 ---
 
-## **🚀 Features**
-✔ **Task creation, removal, and updates with exact matching**  
-✔ **Priority-based sorting (URGENT, HIGH, MEDIUM, LOW)**  
-✔ **Deadline tracking & due date validation**  
-✔ **Unit-test verified functionality**  
-✔ **Future roadmap for advanced task management**  
+## 🛠️ **Installation & Setup**
+Ensure you have Python installed (minimum v3.8), then clone the repository and run:
 
----
-
-## **📂 Installation**
-Clone the repository:
 ```bash
-git clone git@github.com:norman02/todo-list.git
+git clone https://github.com/your-repo/todo-list.git
 cd todo-list
-```
-Install dependencies (if needed):
-```bash
-pip install -r requirements.txt
-```
-
----
-
-## **📝 Usage**
-Run the task manager:
-```bash
 python todo.py
 ```
 
-Example commands:
-```python
-add_task("Submit report", priority="HIGH", due_date="2025-04-30")
-remove_task("Submit report")
-update_task("Submit report", priority="URGENT")
-view_tasks()
-```
+---
+
+## 🚀 **Project Roadmap**  
+
+### ✅ **Phase 1: Core Task Management (Completed)**  
+- [x] **Task creation, removal, and updating**  
+- [x] **Exact task matching & priority levels**  
+- [x] **Basic due dates & sorting**  
+
+### 🚀 **Phase 2: Final Improvements (In Progress)**  
+- [ ] **Refine CLI experience for intuitive commands**  
+- [ ] **Ensure robust local storage without external dependencies**  
+- [ ] **Improve error handling & validation for edge cases**  
+- [ ] **Optimize code structure for maintainability**  
+- [ ] **Comprehensive test coverage & final debugging**  
+
+### 🎯 **Phase 3: Stability & Long-Term Use**  
+- [ ] **Code cleanup & documentation**  
+- [ ] **Ensure simple, efficient standalone functionality**  
+- [ ] **Polish user experience—clear outputs & formatting**  
 
 ---
 
-## **⚡ Running Tests**
-Verify functionality:
+## 📝 **How to Use**
+Here’s an example of adding a task:
+
 ```bash
-python -m unittest discover -s tests
+python todo.py add "Finish project" --priority HIGH --due 2025-05-01
 ```
-Check test coverage:
+
+Listing tasks:
+
 ```bash
-coverage run -m unittest discover -s tests
-coverage report -m
+python todo.py list
+```
+
+For full CLI commands, check the help section:
+
+```bash
+python todo.py --help
 ```
 
 ---
 
-## **🌍 Future Enhancements**
-- 📅 **Recurring tasks (daily, weekly, monthly)**  
-- 🏷 **Task categories & tagging system**  
-- 🔔 **Deadline notifications & reminders**  
-- 📡 **Cloud sync & multi-user collaboration**  
-- 🎨 **CLI enhancements & graphical interface**  
+## 💡 **Contributing**
+Feel free to open issues or submit pull requests. Your feedback helps improve the app!  
 
----
 
-## **👥 Contributing**
-Want to help build the next big productivity tool? **Fork the repo & submit a PR!** Contributions are welcome.  
-
-**Norman02** | [GitHub Profile](https://github.com/norman02)
