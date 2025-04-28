@@ -1,41 +1,35 @@
-import sys
-import os
-
-sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
-
 import unittest
-import storage  # Import the whole storage module
-from storage import load_tasks, write_tasks  # Import the functions
+import os
+from storage import load_tasks, write_tasks
+from config import TASK_FILE
 
 
 class TestStorage(unittest.TestCase):
     def setUp(self):
-        """Set up a temporary test file before each test."""
-        self.test_file = "test_tasks.txt"
-        # Backup original file reference from storage module
-        self.original_file = storage.TASK_FILE
-        # Override TASK_FILE in the storage module for testing
-        storage.TASK_FILE = self.test_file
+        """Ensure TASK_FILE starts empty before each test."""
+        with open(TASK_FILE, "w") as file:
+            file.truncate(0)
 
     def tearDown(self):
-        """Cleanup after tests."""
-        if os.path.exists(self.test_file):
-            os.remove(self.test_file)
-        # Restore the original TASK_FILE in storage
-        storage.TASK_FILE = self.original_file
+        """Clean up TASK_FILE after each test."""
+        if os.path.exists(TASK_FILE):
+            os.remove(TASK_FILE)
 
-    def test_write_and_load_tasks(self):
-        """Ensure tasks are saved and loaded correctly."""
-        sample_tasks = ["[HIGH] Finish report", "[LOW] Buy milk"]
-        write_tasks(sample_tasks)
-        loaded_tasks = load_tasks()
-        self.assertEqual(sample_tasks, loaded_tasks)
+    def test_load_tasks_empty_file(self):
+        """Ensure an empty file returns an empty list."""
+        self.assertEqual(load_tasks(), [])
 
-    def test_load_empty_file(self):
-        """Ensure loading an empty file returns an empty list."""
-        write_tasks([])  # Write an empty list
-        loaded_tasks = load_tasks()
-        self.assertEqual(loaded_tasks, [])
+    def test_load_tasks_missing_file(self):
+        """Ensure a missing file returns an empty list gracefully."""
+        if os.path.exists(TASK_FILE):
+            os.remove(TASK_FILE)
+        self.assertEqual(load_tasks(), [])
+
+    def test_write_tasks_and_load(self):
+        """Ensure tasks are written to and retrieved correctly."""
+        tasks = ["[HIGH] Finish report", "[LOW] Buy groceries"]
+        write_tasks(tasks)
+        self.assertEqual(load_tasks(), tasks)
 
 
 if __name__ == "__main__":

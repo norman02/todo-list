@@ -70,6 +70,11 @@ class TestTasks(unittest.TestCase):
         result = update_task("Read book", "INVALID")
         self.assertEqual(result, "Invalid priority level!")
 
+    def test_remove_non_existent_task(self):
+        """Ensure removing a task that doe notexist returns an error"""
+        result = remove_task("Non-existent task", "MEDIUM")
+        self.assertEqual(result, "Task not found!")
+
 
 if __name__ == "__main__":
     unittest.main()
