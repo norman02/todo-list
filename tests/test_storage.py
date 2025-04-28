@@ -1,5 +1,9 @@
-import unittest
+import sys
 import os
+
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
+
+import unittest
 import storage  # Import the whole storage module
 from storage import load_tasks, write_tasks  # Import the functions
 

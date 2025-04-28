@@ -1,10 +1,12 @@
+import sys
+import os
+
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 import unittest
 import tempfile
-import os
 import storage  # Import the module so we can override TASK_FILE
 from tasks import add_task, remove_task, update_task
 from storage import load_tasks, write_tasks
-
 import tasks  # Access the global tasks list defined in tasks.py
 
 
