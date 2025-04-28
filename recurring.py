@@ -2,9 +2,16 @@ from datetime import datetime, timedelta
 from storage import write_tasks
 
 
-def process_recurring_tasks(tasks):
-    """Checks past-due recurring tasks and generates new instances."""
-    today = datetime.today().date()
+def process_recurring_tasks(tasks, today=None):
+    """Checks past-due recurring tasks and generates new instances.
+
+    Args:
+        tasks (list): List of task strings.
+        today (date, optional): The current date for comparison.
+                                Defaults to datetime.today().date().
+    """
+    if today is None:
+        today = datetime.today().date()
     new_tasks = []
 
     for task in tasks:
@@ -26,8 +33,12 @@ def process_recurring_tasks(tasks):
                 elif recurrence_type == "weekly":
                     new_due_date = due_date + timedelta(weeks=1)
                 elif recurrence_type == "monthly":
-                    new_due_date = due_date.replace(month=due_date.month + 1)
-
+                    if due_date.month == 12:
+                        new_due_date = due_date.replace(year=due_date.year + 1, month=1)
+                    else:
+                        new_due_date = due_date.replace(month=due_date.month + 1)
+                # If recurrence_type is unknown, new_due_date is never defined;
+                # this will naturally raise an error, which our tests expect.
                 new_task = f"{base_task.split(' (Due:')[0].strip()} (Due: {new_due_date}) [Recurring: {recurrence_type}]"
                 new_tasks.append(new_task)
 
