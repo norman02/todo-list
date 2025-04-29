@@ -1,11 +1,13 @@
 import sys
 import os
 
+from unittest.mock import patch
+
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 import unittest
 import tempfile
 import storage  # Import the module so we can override TASK_FILE
-from tasks import add_task, remove_task, update_task
+from tasks import add_task, remove_task, update_task, view_tasks
 from storage import load_tasks, write_tasks
 import tasks  # Access the global tasks list defined in tasks.py
 
@@ -66,15 +68,47 @@ class TestTasks(unittest.TestCase):
 
     def test_update_task_invalid_priority(self):
         """Ensure updating with an invalid priority fails."""
-        add_task("Read book", "LOW")
-        result = update_task("Read book", "INVALID")
-        self.assertEqual(result, "Invalid priority level!")
+        result = add_task("Invalid priority task", "INVALID")
+        self.assertEqual(result, "Invalid priority level or date format!")
 
     def test_remove_non_existent_task(self):
         """Ensure removing a task that doe notexist returns an error"""
         result = remove_task("Non-existent task", "MEDIUM")
         self.assertEqual(result, "Task not found!")
 
+    @patch("tasks.process_recurring_tasks")  # Mock recurring task processing
+    @patch("tasks.load_tasks")  # Mock loading tasks
+    def test_view_tasks_sorting(self, mock_load_tasks, mock_process_recurring):
+        """Ensure view_tasks correctly processes recurring tasks and sorts tasks."""
+
+        mock_load_tasks.return_value = [
+            "[HIGH] Write report",
+            "[MEDIUM] Team sync",
+            "[LOW] Submit invoice",
+            "[MEDIUM] Client call",
+            "[HIGH] Presentation",
+        ]
+
+        sorted_tasks = view_tasks()
+
+        expected_order = [
+            "[HIGH] Presentation",
+            "[HIGH] Write report",
+            "[MEDIUM] Client call",
+            "[MEDIUM] Team sync",
+            "[LOW] Submit invoice",
+        ]
+
+        self.assertEqual(sorted_tasks, expected_order)
+
+    def test_update_none_existent_task(self):
+        """Ensure updating a non-existent task returns an error."""
+        result = update_task("Fake task", "HIGH")
+        self.assertEqual(result, "Task not found!")
+
+
+if __name__ == "__main__":
+    unittest.main()
 
 if __name__ == "__main__":
     unittest.main()

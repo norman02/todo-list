@@ -1,8 +1,8 @@
 from datetime import datetime, timedelta
-from storage import write_tasks
+from storage import write_tasks, load_tasks
 
 
-def process_recurring_tasks(tasks, today=None):
+def process_recurring_tasks(tasks=None, today=None):
     """
     Process recurring tasks:
       - If a recurring task has a due date that is <= today,
@@ -19,6 +19,9 @@ def process_recurring_tasks(tasks, today=None):
     """
     if today is None:
         today = datetime.today().date()
+
+    if tasks is None:
+        tasks = load_tasks()  # Load tasks when no argment is provided
 
     new_tasks = []
 
