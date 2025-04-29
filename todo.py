@@ -3,7 +3,6 @@ from config import TASK_FILE
 
 
 def main():
-    """Main entry point to manage tasks."""
     while True:
         print("\n📌 Task Manager")
         print("[1] View Tasks")
